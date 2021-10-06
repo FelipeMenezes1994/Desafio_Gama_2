@@ -3,12 +3,12 @@
 
 
 <h2 class="title">DESCRIÇÃO</h2>
-<hr>
+
 
 <p>Exercícios voltados para prática de lógica de programação na linguagem JavaScript a partir de base fornecida.</p>
 
 <h2 class="title">Exercícios Propostos</h2>
-<hr>
+
 
 <ol>
 <h3><i class="fas fa-calendar-week"></i> Entrega 1 - 08/10/2021</h3>
