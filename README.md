@@ -1,24 +1,3 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
-<style>
-    h1{
-        text-align: center;
-    }
-    .title{
-        color: #39ff14;
-    }
-    ol{
-        text-align: justify;
-    }
-    li{
-        margin-bottom: 5px;
-    }
-    .fab{
-        color: yellow;
-    }
-</style>
-
 <h1 class="title">GAMA XP #39 - DESAFIO 2</h1>
 
 
