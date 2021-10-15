@@ -1130,9 +1130,8 @@ function exercicio1() {
     for (i = 0; i < listaProdutos.length; i++) {
         estoqueTotal += listaProdutos[i].qtdEstoque;
     }
-    return (`EXERCÍCIO 1: A quantidade de produtos em estoque é ${estoqueTotal}`); 
+    return (`EXERCÍCIO 1: A quantidade de produtos em estoque é ${estoqueTotal}`);
 }
-
 
 function exercicio2() {
     var totalDestaque = 0;
@@ -1141,7 +1140,6 @@ function exercicio2() {
     }
     return (`EXERCÍCIO 2: A quantidade total de itens em destaque é ${totalDestaque}`);
 }
-
 
 function exercicio3() {
     var totalDisponivel = 0;
@@ -1194,22 +1192,172 @@ function exercicio8() {
 function exercicio9() {
     var menosValioso = listaProdutos[0];
     for (i = 1; i < listaProdutos.length; i++) {
-        listaProdutos[i].qtdEstoque !=0 ?  (menosValioso.preco * menosValioso.qtdEstoque > listaProdutos[i].preco * listaProdutos[i].qtdEstoque ? menosValioso = listaProdutos[i] : menosValioso) : listaProdutos[i]
+        listaProdutos[i].qtdEstoque != 0 ? (menosValioso.preco * menosValioso.qtdEstoque > listaProdutos[i].preco * listaProdutos[i].qtdEstoque ? menosValioso = listaProdutos[i] : menosValioso) : listaProdutos[i]
     }
     return (`EXERCÍCIO 9: O produto com estoque menos valioso é o ${menosValioso.descricao}, com valor de estoque de R$${(menosValioso.preco*menosValioso.qtdEstoque).toFixed(2)}`)
 }
 
-
-function exercicio10(){
+function exercicio10() {
     var precoProduto = 0;
     var contEstoque = 0;
-    for(i = 0; i < listaProdutos.length; i++){
-            precoProduto += listaProdutos[i].preco;
-            contEstoque ++;
+    for (i = 0; i < listaProdutos.length; i++) {
+        precoProduto += listaProdutos[i].preco;
+        contEstoque++;
     }
     let ticketMedio = precoProduto / contEstoque
-    return(`EXERCÍCIO 10: O valor do Ticket Médio dos produtos da empresa é R$${ticketMedio.toFixed(2)}`)
+    return (`EXERCÍCIO 10: O valor do Ticket Médio dos produtos da empresa é R$${ticketMedio.toFixed(2)}`)
 }
+
+function exercicio11() {
+    var listaDpto = []
+    let codDpto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDpto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDpto: produto.departamento.idDepto,
+                somatoriaItens: 0
+            };
+            listaDpto.push(itemLista);
+            codDpto = produto.departamento.idDepto;
+        }
+    }
+    for (i = 0; i < listaProdutos.length; i++) {                                 
+        let produto = listaProdutos[i];
+        for (j = 0; j < listaDpto.length; j++) {
+            if (produto.departamento.idDepto == listaDpto[j].idDpto) {
+                listaDpto[j].somatoriaItens += produto.qtdEstoque;
+                break;
+            }
+        }
+
+    }
+
+    return (`EXERCÍCIO 11: Departamentos e quantidade de seus itens: ${JSON.stringify(listaDpto, null, 2)}`)
+
+}
+
+function exercicio12() {
+    var listaDpto = []
+    let codDpto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDpto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDpto: produto.departamento.idDepto,
+                inventarioTotal: 0
+            };
+            listaDpto.push(itemLista);
+            codDpto = produto.departamento.idDepto;
+        }
+    }
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        for (j = 0; j < listaDpto.length; j++) {
+            if (produto.departamento.idDepto == listaDpto[j].idDpto) {
+                listaDpto[j].inventarioTotal += produto.qtdEstoque * produto.preco;
+                break;          
+            }
+
+        }
+
+    }
+    return (`EXERCÍCIO 12: Departamentos e valor total de seu inventário: ${JSON.stringify(listaDpto, null, 2)}`)
+
+}
+
+function exercicio13() {
+    var listaDepto = [];
+    let codDpto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        if (listaProdutos[i].departamento.idDepto != codDpto) {
+            let itemLista = {
+                nomeDepto: listaProdutos[i].departamento.nomeDepto,
+                idDepto: listaProdutos[i].departamento.idDepto,
+                ticketMedio: 0
+            };
+            listaDepto.push(itemLista);
+            codDpto = listaProdutos[i].departamento.idDepto;
+        }
+    }
+
+    for (j = 0; j < listaDepto.length; j++) {
+        let contadorProduto = 0;
+        let somatoriaPreco = 0;
+        for (i = 0; i < listaProdutos.length; i++) {
+            if (listaDepto[j].idDepto == listaProdutos[i].departamento.idDepto) {
+                somatoriaPreco += listaProdutos[i].preco * listaProdutos[i].qtdEstoque;
+                contadorProduto += listaProdutos[i].qtdEstoque;
+            }
+        }
+        listaDepto[j].ticketMedio = (somatoriaPreco / contadorProduto).toFixed(2);
+
+    }
+
+    return (`EXERCÍCIO 13: Departamentos e seus tickets Médios: ${JSON.stringify(listaDepto, null, 2)}`);
+}
+
+function exercicio14() {
+    var listaDepto = [];
+    let codDpto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        if (listaProdutos[i].departamento.idDepto != codDpto) {
+            let itemLista = {
+                nomeDepto: listaProdutos[i].departamento.nomeDepto,
+                idDepto: listaProdutos[i].departamento.idDepto,
+                somatoriaValor: 0
+            };
+            listaDepto.push(itemLista);
+            codDpto = listaProdutos[i].departamento.idDepto;
+        }
+    }
+    
+    var maisValioso = listaDepto[0];
+    for (j = 0; j < listaDepto.length; j++) {
+        for (i = 0; i < listaProdutos.length; i++) {
+            if (listaDepto[j].idDepto == listaProdutos[i].departamento.idDepto) {
+                listaDepto[j].somatoriaValor += listaProdutos[i].preco * listaProdutos[i].qtdEstoque;
+            }
+        }
+        maisValioso.somatoriaValor < listaDepto[j].somatoriaValor ? maisValioso = listaDepto[j] : maisValioso;
+    }
+
+    return(`EXERCÍCIO 14: O departamento mais valioso é: \n ${JSON.stringify(maisValioso, null, 2)}`)
+
+}
+
+function exercicio15() {
+    var listaDepto = [];
+    let codDpto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        if (listaProdutos[i].departamento.idDepto != codDpto) {
+            let itemLista = {
+                nomeDepto: listaProdutos[i].departamento.nomeDepto,
+                idDepto: listaProdutos[i].departamento.idDepto,
+                somatoriaValor: 0
+            };
+            listaDepto.push(itemLista);
+            codDpto = listaProdutos[i].departamento.idDepto;
+        }
+    }
+    
+    var menosValioso = listaDepto[0];
+    for (j = 0; j < listaDepto.length; j++) {
+        for (i = 0; i < listaProdutos.length; i++) {
+            if (listaDepto[j].idDepto == listaProdutos[i].departamento.idDepto) {
+                listaDepto[j].somatoriaValor += listaProdutos[i].preco * listaProdutos[i].qtdEstoque;
+            }
+        }
+        menosValioso.somatoriaValor > listaDepto[j].somatoriaValor ? menosValioso = listaDepto[j] : menosValioso
+    }
+
+    return(`EXERCÍCIO 15: O departamento menos valioso é: \n ${JSON.stringify(menosValioso, null, 2)}`)
+
+}
+
+
 
 console.log(`${exercicio1()} \n
 ${exercicio2()} \n
@@ -1221,13 +1369,10 @@ ${exercicio7()} \n
 ${exercicio8()} \n
 ${exercicio9()} \n
 ${exercicio10()} \n
+${exercicio11()} \n
+${exercicio12()} \n
+${exercicio13()} \n
+${exercicio14()} \n
+${exercicio15()} \n
 `);
 
-
-// const exercicio9 = () => {
-//     var menosValioso = listaProdutos[0];
-//     for (i = 1; i < listaProdutos.length; i++) {
-//         listaProdutos[i].qtdEstoque !=0 ?  (menosValioso.preco * menosValioso.qtdEstoque > listaProdutos[i].preco * listaProdutos[i].qtdEstoque ? menosValioso = listaProdutos[i] : menosValioso) : listaProdutos[i]
-//     }
-//     return (`EXERCÍCIO 9: O produto com estoque menos valioso é o ${menosValioso.descricao}, com valor de estoque de R$${(menosValioso.preco*menosValioso.qtdEstoque).toFixed(2)}`)
-// }
